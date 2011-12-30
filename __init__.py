@@ -89,4 +89,5 @@ else:
             }
         ),
     ]
-    add_introspection_rules(rules, ["^mediastream\.utils\.fields\.model\.RestrictedFileField"])
+    # Modify this string, there should be the path to this class 
+    add_introspection_rules(rules, ["^app\.lib\.fields\.model\.RestrictedFileField"])
