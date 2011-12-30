@@ -1,8 +1,48 @@
 RestrictedFileField:
 
-FileField for Django framework where you can validate by content type, size..
+Customized field Django framework based on FileField.
+This is my custom version where I've added more validations, south support.
 
 This is based on Federico Capoano work.
-see original: http://djangosnippets.org/snippets/2206/
+see original: http://djangosnippets.org/snippets/2206
 
-This is my custom version where I've added more validations.
+
+How to use:
+Accesing it from you moved it
+
+ex:
+from app.lib.fields.model import RestrictedFileField
+
+class MyModel(models.Model):
+    image = RestrictedFileField(
+        null=True,
+        blank=True,
+        upload_to='my_images',
+        content_types=['image/jpeg', 'image/gif'],
+        max_upload_size=2097152.0,
+        min_upload_size=1.0
+    )
+    created_date = models.DateTimeField(auto_now_add=True, null=False, blank=False)
+--
+
+content_types:
+  should a list or tuple of strings, each string represents a valid
+  Content-Typet like 'image/png' -> ['image/png',]
+  see http://en.wikipedia.org/wiki/Internet_media_type
+
+max_upload_size:
+  should be an integer or float value, represents maximum file size allowed in bytes.
+
+min_upload_size:
+  should be an integer or float value, represents minimal file size allowed in bytes.
+
+
+South support:
+this module has support for migrations based on South, if you need it then replace text in 
+add_introspection_rules(rules, ["^app\.lib\.fields\.model\.RestrictedFileField"])
+
+ex:
+you could use "my_root_project\.my_app\.lib\.RestrictedFileField" instead of
+"app\.lib\.fields\.model\.RestrictedFileField"
+
+it means that my class is there: my_root_project/my_app/lib/__init__.py
