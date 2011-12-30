@@ -1,0 +1,8 @@
+RestrictedFileField:
+
+FileField for Django framework where you can validate by content type, size..
+
+This is based on Federico Capoano work.
+see original: http://djangosnippets.org/snippets/2206/
+
+This is my custom version where I've added more validations.
