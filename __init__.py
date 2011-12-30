@@ -61,13 +61,13 @@ class RestrictedFileField(FileField):
 
         elif self.max_upload_size is not None and file._size > self.max_upload_size:
             raise forms.ValidationError(
-                _('Please keep file size under %(max_upload_size). Current file size is %(size)') %
+                _('Please keep file size under %(max_upload_size)s. Current file size is %(size)s') %
                 {'max_upload_size': filesizeformat(self.max_upload_size), 'size': filesizeformat(file._size)}
             )
 
         elif self.min_upload_size is not None and file._size < self.min_upload_size:
             raise forms.ValidationError(
-                _('Please keep file size above %(min_upload_size). Current file size is %(size)') %
+                _('Please keep file size above %(min_upload_size)s. Current file size is %(size)s') %
                 {'min_upload_size': filesizeformat(self.min_upload_size), 'size': filesizeformat(file._size)}
             )
 
