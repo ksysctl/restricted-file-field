@@ -11,6 +11,7 @@ How to use:
 Accesing it from you moved it
 
 ex:
+---
 from app.lib.fields.model import RestrictedFileField
 
 class MyModel(models.Model):
@@ -20,10 +21,13 @@ class MyModel(models.Model):
         upload_to='my_images',
         content_types=['image/jpeg', 'image/gif'],
         max_upload_size=2097152.0,
-        min_upload_size=1.0
+        min_upload_size=1.0,
+        range_width=(50, 80)
+        range_height=(50, 80)
     )
     created_date = models.DateTimeField(auto_now_add=True, null=False, blank=False)
---
+    ...
+---
 
 content_types:
   should a list or tuple of strings, each string represents a valid
@@ -36,9 +40,14 @@ max_upload_size:
 min_upload_size:
   should be an integer or float value, represents minimal file size allowed in bytes.
 
+range_width:
+  an list indicating the min./max. width allowed in image.
+
+range_height:
+  an list indicating the min./max. height allowed in image.
 
 South support:
-this module has support for migrations based on South, if you need it then replace text in 
+this module has support for migrations based on South, if you need it then replace text in
 add_introspection_rules(rules, ["^app\.lib\.fields\.model\.RestrictedFileField"])
 
 ex:
