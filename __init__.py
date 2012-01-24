@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.db.models import FileField
 from django.forms import forms
 from django.template.defaultfilters import filesizeformat
